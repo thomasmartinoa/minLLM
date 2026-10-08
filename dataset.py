@@ -58,10 +58,12 @@ target_tensor = torch.tensor(targets)
 
 batch_size = 4
 
-batch_input = input_tensor[0:4]
-batch_target = target_tensor[0:4]
+random_indexes = torch.randint(0,len(input_tensor),(batch_size,))
+
+batch_input = input_tensor[random_indexes]
+batch_target = target_tensor[random_indexes]
 
 
 print(batch_input)
-print(batch_target) 
+print(batch_target)
 
