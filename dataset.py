@@ -64,6 +64,26 @@ batch_input = input_tensor[random_indexes]
 batch_target = target_tensor[random_indexes]
 
 
-print(batch_input)
-print(batch_target)
+
+vocab_size = len(chars)
+
+embedding_size = 8
+
+embedding_table = torch.randn(vocab_size,embedding_size)
+
+
+input_example = batch_input[0]
+
+embedding_example = []
+
+for token_id in input_example:
+    token_vector = embedding_table[token_id]
+    embedding_example.append(token_vector)
+
+embedding_example = torch.stack(embedding_example)
+
+print(embedding_example)
+
+print(embedding_example.shape)
+
 
