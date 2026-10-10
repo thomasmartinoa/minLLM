@@ -1,4 +1,5 @@
 import torch
+import torch.nn as nn
 
 file = open("data/input.txt","r",encoding="utf-8")
 text = file.read()
@@ -69,21 +70,11 @@ vocab_size = len(chars)
 
 embedding_size = 8
 
-embedding_table = torch.randn(vocab_size,embedding_size)
+embedding = nn.Embedding(vocab_size,embedding_size)
 
 
-input_example = batch_input[0]
+batch_embedding = embedding(input_tensor)
 
-embedding_example = []
+linear = nn.Linear(context_length * embedding_size,vocab_size)
 
-for token_id in input_example:
-    token_vector = embedding_table[token_id]
-    embedding_example.append(token_vector)
-
-embedding_example = torch.stack(embedding_example)
-
-print(embedding_example)
-
-print(embedding_example.shape)
-
-
+print(linear)
