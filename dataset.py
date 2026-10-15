@@ -73,16 +73,24 @@ embedding_size = 8
 embedding = nn.Embedding(vocab_size,embedding_size)
 
 
-batch_embedding = embedding(input_tensor)
+batch_embedding = embedding(batch_input)
 
 linear = nn.Linear(context_length * embedding_size,vocab_size)
 
-print(linear)
-
-
 batch_size = batch_input.shape[0]
 
-flattened_batch = embedding_batch.reshape(
-    batch_size,context_length * embedding_size)
+flattened_batch = batch_embedding.reshape(
+    batch_size,context_length*embedding_size
+)
 
-printf(flattened_batch.shape)
+print(batch_embedding)
+print(batch_embedding.shape)
+
+print(flattened_batch)
+print(flattened_batch.shape)
+
+logits = linear(flattened_batch)
+
+print(logits)
+
+print(logits.shape)
