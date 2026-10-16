@@ -83,14 +83,21 @@ flattened_batch = batch_embedding.reshape(
     batch_size,context_length*embedding_size
 )
 
-print(batch_embedding)
-print(batch_embedding.shape)
-
-print(flattened_batch)
-print(flattened_batch.shape)
-
 logits = linear(flattened_batch)
 
-print(logits)
 
-print(logits.shape)
+first_ex_logits = logits[0]
+
+predicted_token_id = torch.argmax(first_ex_logits)
+
+predicted_token_id = predicted_token_id.item()
+
+predicted_char = itos[predicted_token_id]
+
+print("predited token ID:")
+print(predicted_token_id)
+
+print()
+
+print("predicted char:")
+print(predicted_char)
