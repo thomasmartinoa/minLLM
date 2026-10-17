@@ -94,10 +94,13 @@ predicted_token_id = predicted_token_id.item()
 
 predicted_char = itos[predicted_token_id]
 
-print("predited token ID:")
-print(predicted_token_id)
+loss_function = nn.CrossEntropyLoss()
 
-print()
+correct_next_tokens = batch_input[:,-1]
+print(correct_next_tokens)
+print(correct_next_tokens.shape)
 
-print("predicted char:")
-print(predicted_char)
+
+loss = loss_function(logits,correct_next_tokens)
+
+print(loss.item())
